@@ -74,7 +74,6 @@ class ApplicantFormModal extends PureComponent {
       this.setState({ [e.target.name]: e.target.value });
     }
 
-    // this.setState({ inputValue: e.target.value });
   };
 
   handleDatePickerChange = (date, dateString, name) => {
@@ -85,8 +84,7 @@ class ApplicantFormModal extends PureComponent {
     } else {
       this.setState({ date: '' });
       selectDate = '';
-    }
-    console.log('selectDate', selectDate);
+    }    
   };
 
   get valid() {
@@ -196,7 +194,6 @@ class ApplicantFormModal extends PureComponent {
               <a disabled>No CV Uploaded</a>
             )}
           </FormItem>
-          {this.state.hasPreviousExperience ? 'Y' : 'N'}
           <FormItem {...formItemLayout} label="Has past experience?">
             <Select
               style={{ width: 120 }}
