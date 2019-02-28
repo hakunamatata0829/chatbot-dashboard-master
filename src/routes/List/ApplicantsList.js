@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Table, Card, Button, Divider, Popconfirm } from 'antd';
+import { Table, Card, Button, Divider, Popconfirm, message } from 'antd';
 import { db, storageRef } from 'services/firebase';
 import { connect } from 'dva';
 import styles from './LocationsList.less';
@@ -10,6 +10,7 @@ import ApplicantFormModal from '../Forms/ApplicantFormModal';
 import Popup from 'reactjs-popup';
 import Styles from './ApplicantsList.css';
 import * as Converter from './TimeConverter';
+import moment from 'moment';
 
 const fileNameRegExp = new RegExp(String.raw`\w+\.\w+$`);
 
@@ -21,8 +22,13 @@ const downloadCV = cv => async () => {
   link.target = '_blank';
   link.click();
 };
+const divStyle = {
+  margin: '40px',
+  border: '5px solid pink'
+};
 
 const data = [];
+const dateFormat = 'MM-DD-YYYY';
 
 class ApplicantsList extends PureComponent {
   state = {
@@ -47,7 +53,27 @@ class ApplicantsList extends PureComponent {
     { label: 'Require Past Experience ?', key: 'requirePastExperience' },
     { label: 'Has Previous Experience ?', key: 'hasPreviousExperience' },
   ];
-  changeStatus = event => {};
+  changeStatus = (event, name, uid) => {
+
+    console.log(event)
+    console.log(name)
+    try {
+       db.collection('users')
+        .doc(this.props.currentUser.uid)
+        .collection('applicants')
+        .doc(uid)
+        .update({status:name });
+      
+      message.success(`Applicant status has been updated.`);
+      
+    } catch (e) {
+      message.error(`Applicant status Update Failed`);
+    }
+
+    //this.setState({status:name})
+
+
+  };
   //get date from timestamp value
 
   csvData = [];
@@ -57,56 +83,75 @@ class ApplicantsList extends PureComponent {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: text => (
-        <a href="javascript:;">
-          <Popup
-            trigger={<Button className="Styles.button"> {this.state.status} </Button>}
-            position="bottom center"
-            on="hover"
-          >
-            <div className={Styles.menu}>
-              {/* <div className="header">{title} position </div> */}
-
-              <div
-                className={Styles.menuitem1}
-                name="Mark Later"
-                id="Mark Later"
-                onClick={this.changeStatus.bind(this.name)}
-              >
-                Mark Later
-              </div>
-              <div
-                className={Styles.menuitem2}
-                id="Mark Interest"
-                onClick={this.changeStatus.bind(this.name)}
-              >
-                Mark No Interest
-              </div>
-              <div
-                className={Styles.menuitem3}
-                id="Mark Replied"
-                onClick={this.changeStatus.bind(this.name)}
-              >
-                Mark Replied
-              </div>
-              <div
-                className={Styles.menuitem4}
-                id="Mark Talking"
-                onClick={this.changeStatus.bind(this.name)}
-              >
-                Mark Talking
-              </div>
-              <div
-                className={Styles.menuitem5}
-                onClick={this.changeStatus.bind(this.name)}
-                id="Mark Old Candidate"
-              >
-                Mark Old Connect
-              </div>
-            </div>
-          </Popup>
-        </a>
-      ),
+      render: (text, record) => {
+          //this.setState({status:text})
+          let status = 'connected';
+          let styles = Styles.button1;
+           if (typeof text !== 'undefined') {
+               status = text;
+               if(status == 'Mark No Interest')
+                 styles = Styles.button2;
+               if(status == 'Mark Replied')
+                 styles = Styles.button3;
+               if(status == 'Mark Talking')
+                 styles = Styles.button4;
+               if(status == 'Mark Old Candidate')
+                 styles = Styles.button5;
+           }
+          return(
+              
+              <a href="javascript:;">
+                <Popup
+                  trigger={<Button className={styles}> {status} </Button>}
+                  position="bottom center"
+                  on="hover"
+                >
+                  <div className={Styles.menu}>
+                    <div
+                      className={Styles.menuitem1}
+                      name="Mark Later"
+                      id="Mark Later"
+                      onClick={((e) => this.changeStatus(e, 'Mark Later', record.uid))}
+                    >
+                      Mark Later
+                    </div>
+                    <div
+                      className={Styles.menuitem2}
+                      name="Mark No Interest"
+                      id="Mark No Interest"
+                      onClick={((e) => this.changeStatus(e, 'Mark No Interest', record.uid))}
+                    >
+                      Mark No Interest
+                    </div>
+                    <div
+                      className={Styles.menuitem3}
+                      name="Mark Replied"
+                      id="Mark Replied"
+                      onClick={((e) => this.changeStatus(e, 'Mark Replied', record.uid))}
+                    >
+                      Mark Replied
+                    </div>
+                    <div
+                      className={Styles.menuitem4}
+                      id="Mark Talking"
+                      name="Mark Talking"
+                      onClick={((e) => this.changeStatus(e, 'Mark Talking', record.uid))}
+                    >
+                      Mark Talking
+                    </div>
+                    <div
+                      className={Styles.menuitem5}
+                      name="Mark Old Candidate"
+                      onClick={((e) => this.changeStatus(e, 'Mark Old Candidate', record.uid))}
+                      id="Mark Old Candidate"
+                    >
+                      Mark Old Connect
+                    </div>
+                  </div>
+                </Popup>
+              </a>
+            )
+        }
     },
     {
       title: 'Date',

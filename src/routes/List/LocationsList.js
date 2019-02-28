@@ -90,7 +90,10 @@ class LocationsList extends PureComponent {
       title: '',
       dataIndex: 'enableDisplay',
       key: 'enableDisplay',
-      render: text => <Switch defaultChecked={text} onChange={this.onChangeDisplay} />,
+      render: (text, record) => (
+        <Switch defaultChecked={text} onChange={((e) => this.onChangeDisplay(record.uid, text))} />
+      ),
+      
     },
     {
       title: 'Address',
@@ -134,9 +137,25 @@ class LocationsList extends PureComponent {
     },
   ];
 
-  onChangeDisplay = checked => {
-    console.log(checked);
-    this.setState({ enableDisplay: checked });
+  onChangeDisplay = (uid, text) => {
+    
+    text = !text;
+    this.setState({ enableDisplay: text });
+      try {
+           db.collection('users')
+            .doc(this.props.currentUser.uid)
+            .collection('locations')
+            .doc(uid)
+            .update({enableDisplay: text});
+
+            message.success(`Location status has been updated.`);
+        
+      } catch (e) {
+        message.error(e.message);
+      }
+    
+    
+
   };
   get openingsCount() {
     return this.props.locations.reduce((acc, location) => {

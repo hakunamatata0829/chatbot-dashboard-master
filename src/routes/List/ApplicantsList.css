@@ -7,7 +7,24 @@
     font-size: 14px;
     text-align: center;
   }
-  
+  .button1 {
+    background:white;
+  }
+  .button2 {
+    background:rgb(210,214,222);
+  }
+  .button3 {
+    background:rgb(0,166,90);
+     color:white;
+  }
+  .button4 {
+    background:rgb(243,156,19);
+     color:white;
+  }
+  .button5 {
+    background:rgb(215,26,97);
+     color:white;
+  }
   .button{
     color: #fff;
     background: rgb(0, 141,76);

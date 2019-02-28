@@ -61,10 +61,7 @@ class ApplicantFormModal extends PureComponent {
     if (props.applicants.date == null) this.setState({ date: '' });
     //console.log(props.applicants)
   }
-  componentWillUpdate(props) {
-    this.setState({ ...props.applicants });
-    if (props.applicants.date == null) this.setState({ date: '' });
-  }
+ 
 
   handleInputChange = e => {
     if (e.target.name == 'date') {
@@ -77,14 +74,18 @@ class ApplicantFormModal extends PureComponent {
   };
 
   handleDatePickerChange = (date, dateString, name) => {
+    console.log('datestring ' , dateString);
+    console.log('date ' , date);
+
     if (dateString !== '') {
       var newdate = Converter.dateToTimestamp(dateString);
-      selectDate = Converter.datepickerToTimestamp(dateString);
+      //selectDate = Converter.datepickerToTimestamp(dateString);
       this.setState({ date: newdate });
     } else {
       this.setState({ date: '' });
       selectDate = '';
-    }    
+    }  
+    console.log('state-date ', this.state.date)  
   };
 
   get valid() {
@@ -132,9 +133,11 @@ class ApplicantFormModal extends PureComponent {
   };
 
   render() {
+    console.log('here', this.state.date);
     var appDate = this.state.date
       ? Converter.timeStamptoDate(this.state.date['seconds'])
       : Converter.getTodayDate();
+    console.log('appdate', appDate);
 
     return (
       <Modal

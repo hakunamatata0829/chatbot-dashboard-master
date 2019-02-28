@@ -12,6 +12,10 @@ export function timeStamptoDate(text) {
     month = `0${month}`;
   }
   var date = a.getDate();
+  if (date < 10) {
+    date = `0${date}`;
+  }
+  
   var hour = a.getHours();
   var min = a.getMinutes();
   var sec = a.getSeconds();
