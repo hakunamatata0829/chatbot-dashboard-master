@@ -61,11 +61,7 @@ class ApplicantFormModal extends PureComponent {
     if (props.applicants.date == null) this.setState({ date: '' });
     //console.log(props.applicants)
   }
-  componentWillUpdate(props) {
-    this.setState({ ...props.applicants });
-    if (props.applicants.date == null) this.setState({ date: '' });
-  }
-
+  
   handleInputChange = e => {
     if (e.target.name == 'date') {
       var date = Converter.dateToTimestamp(e.target.value);
