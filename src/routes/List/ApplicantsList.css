@@ -1,0 +1,65 @@
+.Popdiv {
+    font-size: 12px;
+  }
+  .Popdiv > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .button{
+    color: #fff;
+    background: rgb(0, 141,76);
+    border-color: rgb(0, 141,76);
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+  }
+  .menu {
+    width: 142px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    
+  }
+  .menuitem1{
+      background:white;
+      color:rgb(106, 107,108);
+      padding: 5px;
+      height: 28px;
+      border: 1px solid rgb(187, 187, 187);      
+      border-radius:5px 5px 0 0;
+      
+  }
+  .menuitem2{
+      background:rgb(210,214,222);
+      color:rgb(106, 107,108);
+      padding: 5px;
+      height: 28px;
+      border-bottom: 1px solid rgb(187, 187, 187);
+  }
+  .menuitem3{
+    background:rgb(0,166,90);
+    color:white;
+    padding: 5px;
+    height: 28px;
+    border-bottom: 1px solid rgb(187, 187, 187);
+  }
+  .menuitem4{
+    background:rgb(243,156,19);
+    color:white;
+    padding: 5px;
+    height: 28px;
+    border-bottom: 1px solid rgb(187, 187, 187);
+  }
+  .menuitem5{
+    background:rgb(215,26,97);
+    color:white;
+    padding: 5px;
+    height: 28px; 
+    border-radius:0 0 5px 5px ;   
+  }
+  .menu-item:hover {
+    color: #2980b9;
+  }

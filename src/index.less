@@ -1,0 +1,139 @@
+@import '~antd/lib/style/themes/default.less';
+@import './utils/utils.less';
+html,
+body,
+:global(#root) {
+  height: 100%;
+}
+
+:global(.ant-layout) {
+  min-height: 100%;
+}
+
+canvas {
+  display: block;
+}
+.ant-input-affix-wrapper input {
+  text-align: center;
+}
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+:global {
+  .ant-modal {
+    width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  // .ant-form-item-control-wrapper{
+  //   width: 70% !important;
+  // }
+  // .ant-card-body .ant-spin-nested-loading{
+  //   overflow-x: scroll !important;
+  //   width: 75% !important;
+  // }
+  // .ant-spin-container{
+  //   width: 110vw !important;
+  //   overflow-x: none !important;
+  // }
+  // .ant-spin-container .index__container___2G0Kb{
+  //   width: 23vw !important;
+  // }
+}
+// temp fix for https://github.com/ant-design/ant-design/commit/a1fafb5b727b62cb0be29ce6e9eca8f579d4f8b7
+:global {
+  .ant-spin-container {
+    overflow: visible !important;
+  }
+
+  .global-spin {
+    width: 100%;
+    margin: 40px 0 !important;
+  }
+}
+
+:global {
+  .ant-menu.ant-menu-dark .ant-menu-item-selected {
+    background-color: #7e70f3 !important;
+  }
+
+  .ant-btn-primary {
+    color: #fff;
+    background-color: #7e70f3 !important;
+    border-color: #7e70f3 !important;
+  }
+
+  .containerSelected___1hqXa.price___3sOrj .header___39lEe {
+    background-color: #7e70f3 !important;
+  }
+
+  .ant-btn-group .ant-btn-primary:first-child:not(:last-child) {
+    border-right-color: #7e70f3 !important;
+  }
+
+  a {
+    color: #7e70f3 !important;
+  }
+
+  .ant-layout-sider {
+    background: black;
+  }
+
+  .ant-menu.ant-menu-dark .ant-menu-item-selected a {
+    color: white !important;
+  }
+
+  .ant-menu.ant-menu-dark a {
+    color: white !important;
+  }
+
+  .ant-pagination-item-active {
+    border-color: #7e70f3;
+    font-weight: 500;
+  }
+
+  i.anticon.anticon-download {
+    color: white !important;
+  }
+
+  tbody.ant-table-tbody span {
+    color: #333333 !important;
+  }
+
+  .right___3kEl5 .account___39VBq .avatar___HsSLb {
+    color: #7e70f3 !important;
+    background: #7e70f3 !important;
+  }
+
+  ul.price___3sOrj {
+    border-radius: 3px !important;
+    border: 5px solid #eee !important;
+  }
+
+  ul.price___3sOrj button {
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .ant-checkbox-inner {
+    // color: #7e70f3 !important;
+    // background: #7e70f3 !important;
+  }
+  button.ant-btn.ant-btn-primary {
+    color: white !important;
+  }
+  @media screen and (min-width: 768px) {
+    .planSelectionPage .ant-spin-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-y: hidden !important;
+    }
+    .ulFLex {
+      flex: 0 0 20%;
+    }
+  }
+}

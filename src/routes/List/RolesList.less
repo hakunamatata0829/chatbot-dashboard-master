@@ -1,0 +1,33 @@
+@import '~antd/lib/style/themes/default.less';
+@import '../../utils/utils.less';
+
+.tableList {
+  .tableListOperator {
+    margin-bottom: 16px;
+    button {
+      margin-right: 8px;
+    }
+  }
+}
+
+.exportApplicants p {
+  float: right;
+}
+
+@media screen and (max-width: @screen-lg) {
+  .tableListForm :global(.ant-form-item) {
+    margin-right: 24px;
+  }
+}
+
+@media screen and (max-width: @screen-md) {
+  .tableListForm :global(.ant-form-item) {
+    margin-right: 8px;
+  }
+}
+:global {
+  .ant-progress-bg {
+    height: 14px !important;
+    background: #7e70f3 !important;
+  }
+}
